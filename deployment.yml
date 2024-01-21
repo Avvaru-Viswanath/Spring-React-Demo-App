@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Spring-React-Demo-App
+  labels:
+    app: Spring-React-Demo-App
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: Spring-React-Demo-App
+  template:
+    metadata:
+      labels:
+        app: Spring-React-Demo-App
+    spec:
+      containers:
+        - name: "Spring-React-Demo-App/spring-react-demo-app:be:0.0.3"
+          image: "avvaru-viswanath/spring-react-demo-app:be:0.0.3:latest"
+          ports:
+            - containerPort: 5000
+          imagePullPolicy: Always
+
+Spec: 
+  Containers: 
+    - name: "Spring-React-Demo-App/spring-react-demo-app:be:0.0.3"
+      image: "avvaru-viswanath/spring-react-demo-app:fe:0.0.3"
+    container_name: front-end
+    ports:
+            - containerPort: 5000
+          imagePullPolicy: Always
+
+  
