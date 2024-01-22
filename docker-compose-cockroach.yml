@@ -2,7 +2,7 @@ version: '3.5'
 services:
   16-bits-cockroach:
     image: cockroachdb/cockroach:v22.1.0
-    container_name: 16-bits-cockroach
+    container_name: avvaru-viswanath-cockroach
     ports:
       - "26257:26257"
       - "8081:8080"
@@ -11,9 +11,9 @@ services:
       - "${PWD}/cockroach-data/16-bits-cockroach:/cockroach/cockroach-data"
   16-bits-back-end:
     depends_on:
-      - 16-bits-cockroach
-    image: "16bits/zero2hero-be:0.0.3"
-    container_name: 16-bits-back-end
+      - avvaru-viswanath-cockroach
+    image: "avvaru-viswanath/spring-react-demo-app-be:0.0.3"
+    container_name: avvaru-viswanath-back-end
     ports:
       - "8080:8080"
     environment:
@@ -22,7 +22,7 @@ services:
           "spring.datasource.url"  : "jdbc:postgresql://16-bits-cockroach:26257/defaultdb?sslmode=disable&user=root"
       }'
   16-bits-front-end:
-    image: "16bits/zero2hero-fe:0.0.3"
-    container_name: 16-bits-front-end
+    image: "avvaru-viswanath/spring-react-demo-app-fe:0.0.3"
+    container_name: avvaru-viswanath-front-end
     ports:
       - "3000:3000"
